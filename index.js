@@ -38,29 +38,42 @@ app.get('/next', (request, response, next) => {
 // GET with Routing Parameters
 app.get('/class/:id', (request, response) => {
   const studentId = Number(request.params.id);
-
   const student = data.filter((student) => student.id === studentId);
-
   response.send(student);
-  
-
-
-
 });
+
+app
+  .route('/class')
+  .get((request, response) => {
+    response.send("Retrieve class info");
+  })
+  .post((request, response) => {
+    response.send("Create class info");
+  })
+  .put((request, response) => {
+    response.send("Update class info");
+  });
+
+// Route chaining
+// GET
+// app.get('/class', (request, response) => {
+//   response.send("Retrieve class info");
+// });
+
 
 // POST
-app.post('/create', (request, response) => {
-  response.send("This is a POST request at /");
-});
+// app.post('/create', (request, response) => {
+//   response.send("Create class info");
+// });
 
 // PUT
-app.put('/edit', (request, response) => {
-  response.send("This is a PUT request at /");
-});
+// app.put('/edit', (request, response) => {
+//   response.send("Update class info");
+// });
 
 // DELETE
 app.delete('/delete', (request, response) => {
-  response.send("This is a DELETE request at /");
+  response.send("Delete class info");
 });
 
 
