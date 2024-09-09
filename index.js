@@ -12,9 +12,19 @@ app.use(express.static("public"));
 // Using the images folder at the route / project
 app.use('/images', express.static("images"));
 
+// Using express.json and express.urlencoded
+// app.use(express.json()); 
+app.use(express.urlencoded({extended: true}));
+
 // GET
 app.get('/', (request, response) => {
   response.json(data);
+});
+
+// POST - express.json and express.urlencoded
+app.post('/item', (request, response) => {
+  console.log(request.body);
+  response.send(request.body);
 });
 
 // GET - download method
