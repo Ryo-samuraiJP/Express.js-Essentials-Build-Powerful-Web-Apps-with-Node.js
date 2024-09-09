@@ -55,7 +55,8 @@ app.get('/class/:id', (request, response) => {
 app
   .route('/class')
   .get((request, response) => {
-    response.send("Retrieve class info");
+    // response.send("Retrieve class info");
+    throw new Error();
   })
   .post((request, response) => {
     response.send("Create class info");
@@ -86,6 +87,10 @@ app.delete('/delete', (request, response) => {
   response.send("Delete class info");
 });
 
+app.use((err, req, res, next) => {
+  console.log(err.stack);
+  res.status(500).send("Something is broken!");
+});
 
 app.listen(PORT, () => {
   console.log(`The server is running on port ${PORT}.`);
